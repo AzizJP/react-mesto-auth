@@ -1,0 +1,9 @@
+.popup__name {
+  margin: 10px 0 0 0;
+  font-size: 0.75rem;
+  line-height: 0.9075rem;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

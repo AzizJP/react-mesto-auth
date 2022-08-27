@@ -1,0 +1,13 @@
+.popup__save_invalid {
+  background-color: white;
+  cursor: auto;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 920px) {
+  .popup__save_invalid:hover {
+    opacity: 1;
+    transition: none;
+  }
+}
