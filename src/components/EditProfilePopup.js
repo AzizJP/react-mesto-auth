@@ -5,16 +5,20 @@ import { useFormAndValidation } from "../hooks/useFormAndValidation";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser, isRequesting }) {
   const { values, handleChange, errors, isValid, setValues } =
-    useFormAndValidation({
-      "popup__name": "",
-      "popup__info": ""
-    }, {
-      "popup__name": "",
-      "popup__info": ""
-    }, {
-      "popup__name": true,
-      "popup__info": true
-    });
+    useFormAndValidation(
+      {
+        "popup__name": "",
+        "popup__info": "",
+      },
+      {
+        "popup__name": "",
+        "popup__info": "",
+      },
+      {
+        "popup__name": true,
+        "popup__info": true,
+      }
+    );
   const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
@@ -45,8 +49,9 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isRequesting }) {
       buttonText={isRequesting ? "Сохраняю..." : "Сохранить"}
     >
       <input
-        className={`popup__input popup__input_type_name ${isValid["popup__name"] ? "" : "popup__input_type_error"
-          }`}
+        className={`popup__input popup__input_type_name ${
+          isValid["popup__name"] ? "" : "popup__input_type_error"
+        }`}
         required
         minLength="2"
         maxLength="40"
@@ -58,8 +63,9 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isRequesting }) {
         onChange={handleChange}
       />
       <span
-        className={`popup-title-error popup__input-error ${isValid["popup__name"] ? "" : "popup__input-error_active"
-          }`}
+        className={`popup-title-error popup__input-error ${
+          isValid["popup__name"] ? "" : "popup__input-error_active"
+        }`}
       >
         {errors["popup__name"]}
       </span>
@@ -70,15 +76,17 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isRequesting }) {
         type="text"
         id="popup-info"
         name="popup__info"
-        className={`popup__input popup__input_type_info ${isValid["popup__info"] ? "" : "popup__input_type_error"
-          }`}
+        className={`popup__input popup__input_type_info ${
+          isValid["popup__info"] ? "" : "popup__input_type_error"
+        }`}
         placeholder="Вид деятельности"
         value={values["popup__info"]}
         onChange={handleChange}
       />
       <span
-        className={`popup-info-error popup__input-error ${isValid["popup__info"] ? "" : "popup__input-error_active"
-          }`}
+        className={`popup-info-error popup__input-error ${
+          isValid["popup__info"] ? "" : "popup__input-error_active"
+        }`}
       >
         {errors["popup__info"]}
       </span>

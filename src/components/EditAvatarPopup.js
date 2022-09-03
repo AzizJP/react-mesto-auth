@@ -4,12 +4,16 @@ import { useFormAndValidation } from "../hooks/useFormAndValidation";
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isRequesting }) {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
-    useFormAndValidation({ "popup__avatar": "" }, { "popup__avatar": "" }, { "popup__avatar": true });
+    useFormAndValidation(
+      { "popup__avatar": "" },
+      { "popup__avatar": "" },
+      { "popup__avatar": true }
+    );
 
   React.useEffect(() => {
     if (isOpen) {
       setValues({ "popup__avatar": "" });
-      resetForm({ "popup__avatar": "" }, { "popup__avatar": "" },)
+      resetForm({ "popup__avatar": "" }, { "popup__avatar": "" });
     }
   }, [setValues, resetForm, isOpen]);
 
@@ -37,15 +41,17 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isRequesting }) {
         type="url"
         id="popup-avatar"
         name="popup__avatar"
-        className={`popup__input popup__input_type_avatar ${isValid["popup__avatar"] ? "" : "popup__input_type_error"
-          }`}
+        className={`popup__input popup__input_type_avatar ${
+          isValid["popup__avatar"] ? "" : "popup__input_type_error"
+        }`}
         placeholder="Ссылка на картинку"
         value={values["popup__avatar"]}
         onChange={handleChange}
       />
       <span
-        className={`popup-avatar-error popup__input-error ${isValid["popup__avatar"] ? "" : "popup__input-error_active"
-          }`}
+        className={`popup-avatar-error popup__input-error ${
+          isValid["popup__avatar"] ? "" : "popup__input-error_active"
+        }`}
       >
         {errors["popup__avatar"]}
       </span>

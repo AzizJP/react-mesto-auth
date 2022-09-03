@@ -4,21 +4,28 @@ import { useFormAndValidation } from "../hooks/useFormAndValidation";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace, isRequesting }) {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
-    useFormAndValidation({
-      "popup__place": "",
-      "popup__link": ""
-    }, {
-      "popup__place": "",
-      "popup__link": ""
-    }, {
-      "popup__place": true,
-      "popup__link": true
-    });
+    useFormAndValidation(
+      {
+        "popup__place": "",
+        "popup__link": "",
+      },
+      {
+        "popup__place": "",
+        "popup__link": "",
+      },
+      {
+        "popup__place": true,
+        "popup__link": true,
+      }
+    );
 
   React.useEffect(() => {
     if (isOpen) {
       setValues({});
-      resetForm({ "popup__place": "", "popup__link": "" }, { "popup__place": "", "popup__link": "" },);
+      resetForm(
+        { "popup__place": "", "popup__link": "" },
+        { "popup__place": "", "popup__link": "" }
+      );
     }
   }, [setValues, resetForm, isOpen]);
 
@@ -47,15 +54,17 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, isRequesting }) {
         type="text"
         id="popup-name"
         name="popup__place"
-        className={`popup__input popup__input_type_place ${isValid["popup__place"] ? "" : "popup__input_type_error"
-          }`}
+        className={`popup__input popup__input_type_place ${
+          isValid["popup__place"] ? "" : "popup__input_type_error"
+        }`}
         placeholder="Название"
         value={values["popup__place"]}
         onChange={handleChange}
       />
       <span
-        className={`popup-name-error popup__input-error ${isValid["popup__place"] ? "" : "popup__input-error_active"
-          }`}
+        className={`popup-name-error popup__input-error ${
+          isValid["popup__place"] ? "" : "popup__input-error_active"
+        }`}
       >
         {errors["popup__place"]}
       </span>
@@ -64,15 +73,17 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, isRequesting }) {
         type="url"
         id="popup-link"
         name="popup__link"
-        className={`popup__input popup__input_type_link ${isValid["popup__link"] ? "" : "popup__input_type_error"
-          }`}
+        className={`popup__input popup__input_type_link ${
+          isValid["popup__link"] ? "" : "popup__input_type_error"
+        }`}
         placeholder="Ссылка на картинку"
         value={values["popup__link"]}
         onChange={handleChange}
       />
       <span
-        className={`popup-link-error popup__input-error ${isValid["popup__link"] ? "" : "popup__input-error_active"
-          }`}
+        className={`popup-link-error popup__input-error ${
+          isValid["popup__link"] ? "" : "popup__input-error_active"
+        }`}
       >
         {errors["popup__link"]}
       </span>

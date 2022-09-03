@@ -1,0 +1,32 @@
+.regiser-login__button {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 0;
+  margin: 173px 0 0 0;
+  border: 2px solid #ffffff;
+  border-radius: 2px;
+  height: 44px;
+  font-family: "Inter", "Verdana", "Tahoma", sans-serif;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  font-style: normal;
+  font-weight: 400;
+  cursor: pointer;
+  transition: opacity 0.5s linear;
+}
+
+@media screen and (min-width: 620px) {
+  .regiser-login__button {
+    margin-top: 216px;
+    height: 48px;
+    font-size: 1.125rem;
+    line-height: 1.36125rem;
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .regiser-login__button:hover {
+    opacity: 0.85;
+    transition: opacity 0.1s linear;
+  }
+}

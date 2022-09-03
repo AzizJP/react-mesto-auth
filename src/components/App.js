@@ -10,6 +10,10 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import PopupWithConfirmation from "./PopupWithConfirmation";
+import { Redirect, Route, Switch } from "react-router-dom";
+import Register from "./Register";
+import Login from "./Login";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -189,15 +193,28 @@ function App() {
       <div className="background">
         <div className="page">
           <Header />
-          <Main
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onEditAvatar={handleEditAvatarClick}
-            onCardClick={handleCardClick}
-            cards={cards}
-            onCardLike={handleCardLike}
-            onCardDelete={openConfirmationPopup}
-          />
+          <Switch>
+            <ProtectedRoute
+              exact
+              path="/"
+              loggedIn={true}
+              component={Main}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              cards={cards}
+              onCardLike={handleCardLike}
+              onCardDelete={openConfirmationPopup}
+            />
+            <Route path="/sign-in">
+              <Login />
+            </Route>
+            <Route path="/sign-up">
+              <Register />
+            </Route>
+            <Redirect to="/" />
+          </Switch>
           <Footer />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}

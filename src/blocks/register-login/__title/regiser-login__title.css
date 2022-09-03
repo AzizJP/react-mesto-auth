@@ -1,0 +1,17 @@
+.regiser-login__title {
+  text-align: center;
+  font-family: "Inter", "Verdana", "Tahoma", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5125rem;
+  font-style: normal;
+  font-weight: 900;
+  margin: 40px 0 10px 0;
+}
+
+@media screen and (min-width: 620px) {
+  .regiser-login__title {
+    margin: 60px 0 20px 0;
+    font-size: 1.5rem;
+    line-height: 1.815625rem;
+  }
+}

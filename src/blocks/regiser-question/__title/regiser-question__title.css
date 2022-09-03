@@ -1,0 +1,11 @@
+.regiser-question__title {
+  font-family: "Inter", "Verdana", "Tahoma", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.05875rem;
+  font-style: normal;
+  font-weight: 400;
+  margin: 40px 0 10px 0;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}

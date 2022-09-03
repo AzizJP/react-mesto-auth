@@ -1,0 +1,12 @@
+.regiser-question {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 620px) {
+  .regiser-question {
+    margin-top: 15px;
+  }
+}

@@ -1,0 +1,14 @@
+.regiser-login__container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 260px;
+  margin: 0;
+  position: relative;
+}
+
+@media screen and (min-width: 620px) {
+  .regiser-login__container {
+    width: 358px;
+  }
+}

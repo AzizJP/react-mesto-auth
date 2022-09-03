@@ -1,0 +1,14 @@
+.regiser-login__input {
+  background-color: black;
+  color: #cccccc;
+  border: none;
+  padding-bottom: 13px;
+  margin: 30px 0 0 0;
+  border-bottom: 2px solid #cccccc;
+  outline-style: none;
+  font-family: "Inter", "Verdana", "Tahoma", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.05875rem;
+  font-style: normal;
+  font-weight: 400;
+}
