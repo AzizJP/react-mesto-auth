@@ -1,25 +1,20 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import RegisterLoginForm from "./RegisterLoginForm";
 
-function Register({ onRegister }) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [message, setMessage] = React.useState("");
-  const history = useHistory();
-  const resetForm = () => {
-    setPassword("");
-    setEmail("");
-    setMessage("");
-  };
+function Register({
+  onRegister,
+  onRegisterPopup,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  message,
+}) {
   const handleSubmit = (e) => {
+    onRegisterPopup();
     e.preventDefault();
-    onRegister({ password, email })
-      .then(resetForm)
-      .then(() => {
-        history.push("/react-mesto-auth");
-      })
-      .catch((err) => setMessage(err.message || "Что-то пошло не так!"));
+    onRegister({ password, email });
   };
   return (
     <div className="register-login">

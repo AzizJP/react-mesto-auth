@@ -1,29 +1,13 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import RegisterLoginForm from "./RegisterLoginForm";
 
-function Login({ onLogin }) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [message, setMessage] = React.useState("");
-  const history = useHistory();
-  const resetForm = () => {
-    setPassword("");
-    setEmail("");
-    setMessage("");
-  };
-
+function Login({ onLogin, email, setEmail, password, setPassword, message }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email || !password) {
       return;
     }
-    onLogin({ email, password })
-      .then(resetForm)
-      .then(() => {
-        history.push("/react-mesto-auth");
-      })
-      .catch((err) => setMessage(err.message || "Что-то пошло не так!"));
+    onLogin({ email, password });
   };
 
   return (

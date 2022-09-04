@@ -19,7 +19,7 @@ function Header({ emailVision, isOpen, onHeaderPopup }) {
           Выйти
         </Link>
       </div>
-      <header className="header">
+      <header className="header__logged-in">
         <a
           href="https://azizjp.github.io/react-mesto-auth/"
           className="header__logo"

@@ -1,0 +1,12 @@
+.popup__info-tooltip {
+  margin: 50px 80px 40px;
+  width: 120px;
+  height: 120px;
+  background: url(../../../images/Check-mark.svg) no-repeat center / contain;
+}
+
+@media screen and (min-width: 620px) {
+  .popup__info-tooltip {
+    margin: 60px 155px 32px;
+  }
+}

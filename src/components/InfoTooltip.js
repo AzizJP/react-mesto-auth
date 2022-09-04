@@ -1,6 +1,7 @@
 import React from "react";
 
-function InfoTooltip({ isRegister, onClose }) {
+function InfoTooltip({ loggedIn, onClose, name, isOpen }) {
+  const className = `popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`;
   return (
     <div className={className} onClick={onClose}>
       <div
@@ -16,11 +17,13 @@ function InfoTooltip({ isRegister, onClose }) {
           aria-label="Закрыть"
           onClick={onClose}
         ></button>
-        <img
-          src={isRegister ? "../images/Check-mark.svg" : "../images/Cross.svg"}
-        />
-        <h3 className={"popup__title"}>
-          {isRegister
+        <div
+          className={`popup__info-tooltip ${
+            !loggedIn ? "popup__info-tooltip_type_error" : ""
+          }`}
+        ></div>
+        <h3 className={"popup__info-tooltip_title"}>
+          {loggedIn
             ? "Вы успешно зарегистрировались!"
             : "Что-то пошло не так! Попробуйте ещё раз."}
         </h3>

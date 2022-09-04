@@ -1,0 +1,21 @@
+.header__logged-in {
+  display: flex;
+  margin: 0;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  padding: 28px 0 31.6px;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 620px) {
+  .header__logged-in {
+    border: none;
+    padding-bottom: 32.6px;
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .header__logged-in {
+    max-width: 880px;
+    padding: 45px 0 41px;
+  }
+}

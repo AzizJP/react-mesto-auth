@@ -15,6 +15,7 @@ import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
 import * as Auth from "./Auth.js";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -23,6 +24,8 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
   const [isRequestingServer, setIsRequestingServer] = React.useState(false);
+  const [isHeaderPopupOpen, setIsHeaderPopupOpen] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
 
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [deletedCard, setDeletedCard] = React.useState(null);
@@ -30,9 +33,16 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({ name: "", about: "" });
   const [cards, setCards] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [isHeaderPopupOpen, setIsHeaderPopupOpen] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [message, setMessage] = React.useState("");
   const history = useHistory();
+  const resetForm = () => {
+    setPassword("");
+    setEmail("");
+    setMessage("");
+  };
 
   React.useEffect(() => {
     Promise.all([api.getProfileInfo(), api.getInitialCards()])
@@ -50,12 +60,14 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard(null);
+    setIsInfoTooltipOpen(false);
   }, []);
 
   const isOpen =
     isEditAvatarPopupOpen ||
     isEditProfilePopupOpen ||
     isAddPlacePopupOpen ||
+    isInfoTooltipOpen ||
     selectedCard;
 
   React.useEffect(() => {
@@ -103,6 +115,9 @@ function App() {
   const handleHeaderPopupClick = React.useCallback(() => {
     setIsHeaderPopupOpen(!isHeaderPopupOpen);
   }, [isHeaderPopupOpen]);
+  const handleInfoTooltipClick = React.useCallback(() => {
+    setIsInfoTooltipOpen(!isInfoTooltipOpen);
+  }, [isInfoTooltipOpen]);
 
   const openConfirmationPopup = React.useCallback((card) => {
     setDeletedCard(card);
@@ -196,28 +211,35 @@ function App() {
     [closeConfirmationPopup]
   );
 
-  const onRegister = ({ password, email }) => {
-    return Auth.register(password, email).then((res) => {
-      if (!res || res.statusCode === 400) {
-        throw new Error("Что-то пошло не так!");
-      }
-      if (res.token) {
-        setLoggedIn(true);
-        localStorage.setItem("token", res.token);
-      }
-    });
+  const handleRegister = ({ password, email }) => {
+    Auth.register(password, email)
+      .then((res) => {
+        if (!res || res.statusCode === 400) {
+          throw new Error("Что-то пошло не так!");
+        }
+        if (res) {
+          setLoggedIn(true);
+          resetForm();
+          history.push("/sign-in");
+        }
+      })
+      .catch((err) => setMessage(err.message || "Что-то пошло не так!"));
   };
 
-  const onLogin = ({ email, password }) => {
-    return Auth.authorize(email, password).then((data) => {
-      if (!data) {
-        throw new Error("Неправильное имя пользователя или пароль");
-      }
-      if (data.token) {
-        setLoggedIn(true);
-        localStorage.setItem("token", data.token);
-      }
-    });
+  const handleLogin = ({ email, password }) => {
+    Auth.authorize(email, password)
+      .then((res) => {
+        if (!res) {
+          throw new Error("Неправильное имя пользователя или пароль");
+        }
+        if (res.token) {
+          setLoggedIn(true);
+          resetForm();
+          localStorage.setItem("token", res.token);
+          history.push("/react-mesto-auth");
+        }
+      })
+      .catch((err) => setMessage(err.message || "Что-то пошло не так!"));
   };
 
   const tokenCheck = async (token) => {
@@ -261,10 +283,26 @@ function App() {
               onCardDelete={openConfirmationPopup}
             />
             <Route path="/sign-in">
-              <Login onLogin={onLogin} />
+              <Login
+                onLogin={handleLogin}
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                message={message}
+              />
             </Route>
             <Route path="/sign-up">
-              <Register onRegister={onRegister} />
+              <Register
+                onRegister={handleRegister}
+                onRegisterPopup={handleInfoTooltipClick}
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                message={message}
+                onLogin={handleLogin}
+              />
             </Route>
             <Route>
               {loggedIn ? (
@@ -303,6 +341,12 @@ function App() {
             name="image"
             card={selectedCard}
             isOpen={!!selectedCard}
+            onClose={closeAllPopups}
+          />
+          <InfoTooltip
+            name="info-tooltip"
+            loggedIn={loggedIn}
+            isOpen={isInfoTooltipOpen}
             onClose={closeAllPopups}
           />
         </div>
