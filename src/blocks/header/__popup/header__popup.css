@@ -1,0 +1,15 @@
+.header__popup {
+  border: none;
+  margin: 7px 30px 0 0;
+  padding: 0;
+  background: url(../../../images/GroupLines.svg) no-repeat center / contain;
+  height: 18px;
+  width: 24px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 620px) {
+  .header__popup {
+    display: none;
+  }
+}
