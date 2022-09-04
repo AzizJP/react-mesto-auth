@@ -11,7 +11,7 @@
 
 **GitHub**
 
-* [Ссылка на проект в GitHub](https://azizjp.github.io/mesto-react-auth/)
+* [Ссылка на проект в GitHub](https://azizjp.github.io/react-mesto-auth/)
 
 **Технологии применяемые в проекте**
 
