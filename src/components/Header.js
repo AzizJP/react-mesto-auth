@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-function Header({ emailVision, isOpen, onHeaderPopup }) {
+function Header({ emailVision, isOpen, onHeaderPopup, loggedOut }) {
   const path = useLocation();
   return path.pathname === "/react-mesto-auth" ? (
     <div className="header__container">
@@ -12,6 +12,7 @@ function Header({ emailVision, isOpen, onHeaderPopup }) {
           onClick={() => {
             localStorage.removeItem("token");
             onHeaderPopup();
+            loggedOut();
           }}
           to={"/sign-in"}
           className="header__button_popup"

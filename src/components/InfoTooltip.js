@@ -1,6 +1,13 @@
 import React from "react";
 
-function InfoTooltip({ loggedIn, onClose, name, isOpen }) {
+function InfoTooltip({
+  loggedIn,
+  onClose,
+  name,
+  isOpen,
+  successText,
+  errorText,
+}) {
   const className = `popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`;
   return (
     <div className={className} onClick={onClose}>
@@ -16,16 +23,14 @@ function InfoTooltip({ loggedIn, onClose, name, isOpen }) {
           className="popup__close"
           aria-label="Закрыть"
           onClick={onClose}
-        ></button>
+        />
         <div
           className={`popup__info-tooltip ${
             !loggedIn ? "popup__info-tooltip_type_error" : ""
           }`}
         ></div>
         <h3 className={"popup__info-tooltip_title"}>
-          {loggedIn
-            ? "Вы успешно зарегистрировались!"
-            : "Что-то пошло не так! Попробуйте ещё раз."}
+          {loggedIn ? successText : errorText}
         </h3>
       </div>
     </div>
