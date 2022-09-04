@@ -233,7 +233,7 @@ function App() {
     let jwt = localStorage.getItem("token");
     if (jwt) {
       tokenCheck(jwt);
-      history.push("/mesto");
+      history.push("/react-mesto-auth");
     }
   }, [loggedIn, history]);
 
@@ -249,7 +249,7 @@ function App() {
           <Switch>
             <ProtectedRoute
               exact
-              path="/mesto"
+              path="/react-mesto-auth"
               loggedIn={loggedIn}
               component={Main}
               onEditProfile={handleEditProfileClick}
@@ -267,7 +267,11 @@ function App() {
               <Register onRegister={onRegister} />
             </Route>
             <Route>
-              {loggedIn ? <Redirect to="/mesto" /> : <Redirect to="/sign-up" />}
+              {loggedIn ? (
+                <Redirect to="/react-mesto-auth" />
+              ) : (
+                <Redirect to="/sign-up" />
+              )}
             </Route>
           </Switch>
           <Footer />

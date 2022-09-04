@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 function Header({ emailVision, isOpen, onHeaderPopup }) {
   const path = useLocation();
-  return path.pathname === "/mesto" ? (
+  return path.pathname === "/react-mesto-auth" ? (
     <div className="header__container">
       <div
         className={`header__email ${isOpen ? "header__email_type_active" : ""}`}
@@ -20,7 +20,10 @@ function Header({ emailVision, isOpen, onHeaderPopup }) {
         </Link>
       </div>
       <header className="header">
-        <a href="https://azizjp.github.io/mesto/" className="header__logo">
+        <a
+          href="https://azizjp.github.io/react-mesto-auth/"
+          className="header__logo"
+        >
           {" "}
         </a>
         <button
@@ -33,7 +36,10 @@ function Header({ emailVision, isOpen, onHeaderPopup }) {
     </div>
   ) : (
     <header className="header">
-      <a href="https://azizjp.github.io/mesto/" className="header__logo">
+      <a
+        href="https://azizjp.github.io/react-mesto-auth/"
+        className="header__logo"
+      >
         {" "}
       </a>
       <Link

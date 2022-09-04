@@ -17,7 +17,7 @@ function Register({ onRegister }) {
     onRegister({ password, email })
       .then(resetForm)
       .then(() => {
-        history.push("/mesto");
+        history.push("/react-mesto-auth");
       })
       .catch((err) => setMessage(err.message || "Что-то пошло не так!"));
   };
