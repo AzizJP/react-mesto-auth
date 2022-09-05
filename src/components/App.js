@@ -242,6 +242,7 @@ function App() {
           history.push("/sign-in");
         }
       })
+      .then(() => handleRegisterInfoTooltipClick())
       .catch((err) => setMessage(err.message || "Что-то пошло не так!"));
   };
 
@@ -258,6 +259,7 @@ function App() {
           history.push("/react-mesto-auth");
         }
       })
+      .then(() => handleLoginInfoTooltipClick())
       .catch((err) => setMessage(err.message || "Что-то пошло не так!"));
   };
 
@@ -305,7 +307,6 @@ function App() {
             <Route path="/sign-in">
               <Login
                 onLogin={handleLogin}
-                onLoginPopup={handleLoginInfoTooltipClick}
                 email={email}
                 setEmail={setEmail}
                 password={password}
@@ -317,7 +318,6 @@ function App() {
             <Route path="/sign-up">
               <Register
                 onRegister={handleRegister}
-                onRegisterPopup={handleRegisterInfoTooltipClick}
                 email={email}
                 setEmail={setEmail}
                 password={password}

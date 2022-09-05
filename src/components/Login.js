@@ -1,22 +1,13 @@
 import React from "react";
 import RegisterLoginForm from "./RegisterLoginForm";
 
-function Login({
-  onLogin,
-  onLoginPopup,
-  email,
-  setEmail,
-  password,
-  setPassword,
-  message,
-}) {
+function Login({ onLogin, email, setEmail, password, setPassword, message }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email || !password) {
       return;
     }
     onLogin({ email, password });
-    setTimeout(onLoginPopup, 500);
   };
 
   return (

@@ -4,7 +4,6 @@ import RegisterLoginForm from "./RegisterLoginForm";
 
 function Register({
   onRegister,
-  onRegisterPopup,
   email,
   setEmail,
   password,
@@ -14,7 +13,6 @@ function Register({
   const handleSubmit = (e) => {
     e.preventDefault();
     onRegister({ password, email });
-    setTimeout(onRegisterPopup, 500);
   };
   return (
     <div className="register-login">
