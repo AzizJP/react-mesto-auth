@@ -16,7 +16,7 @@ function Login({
       return;
     }
     onLogin({ email, password });
-    onLoginPopup();
+    setTimeout(onLoginPopup, 500);
   };
 
   return (

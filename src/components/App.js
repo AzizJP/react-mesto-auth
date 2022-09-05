@@ -311,6 +311,7 @@ function App() {
                 password={password}
                 setPassword={setPassword}
                 message={message}
+                loggedIn={loggedIn}
               />
             </Route>
             <Route path="/sign-up">

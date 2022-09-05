@@ -12,9 +12,9 @@ function Register({
   message,
 }) {
   const handleSubmit = (e) => {
-    onRegisterPopup();
     e.preventDefault();
     onRegister({ password, email });
+    setTimeout(onRegisterPopup, 500);
   };
   return (
     <div className="register-login">
