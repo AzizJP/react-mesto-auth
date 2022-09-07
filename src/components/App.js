@@ -76,6 +76,7 @@ function App() {
     setIsLoginInfoTooltipOpen(false);
     setTimeout(() => {
       setIsSuccess(false);
+      setLoggedIn(false);
     }, 1000);
   }, []);
 
