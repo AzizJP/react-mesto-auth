@@ -284,7 +284,7 @@ function App() {
       tokenCheck(jwt);
       history.push("/react-mesto-auth");
     }
-  }, [loggedIn, history, path.pathname]);
+  }, [loggedIn, history]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
