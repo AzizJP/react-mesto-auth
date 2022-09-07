@@ -1,7 +1,7 @@
 import React from "react";
 
 function InfoTooltip({
-  loggedIn,
+  isSuccess,
   onClose,
   name,
   isOpen,
@@ -26,11 +26,11 @@ function InfoTooltip({
         />
         <div
           className={`popup__info-tooltip ${
-            !loggedIn ? "popup__info-tooltip_type_error" : ""
+            !isSuccess ? "popup__info-tooltip_type_error" : ""
           }`}
         ></div>
         <h3 className={"popup__info-tooltip_title"}>
-          {loggedIn ? successText : errorText}
+          {isSuccess ? successText : errorText}
         </h3>
       </div>
     </div>

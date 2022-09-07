@@ -39,6 +39,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: "", about: "" });
   const [cards, setCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -73,6 +74,9 @@ function App() {
     setSelectedCard(null);
     setIsRegisterInfoTooltipOpen(false);
     setIsLoginInfoTooltipOpen(false);
+    setTimeout(() => {
+      setIsSuccess(false);
+    }, 1000);
   }, []);
 
   const isOpen =
@@ -237,6 +241,7 @@ function App() {
           throw new Error("Что-то пошло не так!");
         }
         if (res.data) {
+          setIsSuccess(true);
           setLoggedIn(true);
           resetForm();
           history.push("/sign-in");
@@ -249,7 +254,9 @@ function App() {
   const handleLogin = ({ email, password }) => {
     Auth.authorize(email, password)
       .then((res) => {
-        if (!res) {
+        if (!res || res.message) {
+          setIsSuccess(false);
+          handleLoginInfoTooltipClick();
           throw new Error("Неправильное имя пользователя или пароль");
         }
         if (res.token) {
@@ -259,7 +266,6 @@ function App() {
           history.push("/react-mesto-auth");
         }
       })
-      .then(() => handleLoginInfoTooltipClick())
       .catch((err) => setMessage(err.message || "Что-то пошло не так!"));
   };
 
@@ -278,7 +284,7 @@ function App() {
       tokenCheck(jwt);
       history.push("/react-mesto-auth");
     }
-  }, [loggedIn, history]);
+  }, [loggedIn, history, path.pathname]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -367,7 +373,7 @@ function App() {
           />
           <InfoTooltip
             name="info-tooltip"
-            loggedIn={loggedIn}
+            isSuccess={isSuccess}
             isOpen={isRegisterInfoTooltipOpen}
             onClose={closeAllPopups}
             successText="Вы успешно зарегистрировались!"
@@ -375,10 +381,9 @@ function App() {
           />
           <InfoTooltip
             name="info-tooltip"
-            loggedIn={loggedIn}
+            isSuccess={isSuccess}
             isOpen={isLoginInfoTooltipOpen}
             onClose={closeAllPopups}
-            successText="Вы успешно авторизовались!"
             errorText="Что-то пошло не так! Попробуйте ещё раз."
           />
         </div>
